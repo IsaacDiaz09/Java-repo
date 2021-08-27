@@ -108,7 +108,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 	}
 
-	public void agregaEventos() {
+	private void agregaEventos() {
 		ventana.getAgregaProd().addActionListener(this);
 		ventana.getActualizaProd().addActionListener(this);
 		ventana.getEliminaProd().addActionListener(this);
@@ -196,7 +196,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return -> boolean
 	 */
-	public boolean verificaSeleccion() {
+	private boolean verificaSeleccion() {
 
 		if (ventana.getTable().getSelectedRow() == -1) {
 			JOptionPane.showMessageDialog(null, "Primero debe seleccionar un producto", "Error",

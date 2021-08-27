@@ -17,9 +17,9 @@ public class Producto {
 	// a usar
 	@GeneratedValue
 	private int codigo;
-	private int inventario;
-	private double precio;
 	private String nombre;
+	private double precio;
+	private int inventario;
 
 	// Constructores
 	public Producto() {

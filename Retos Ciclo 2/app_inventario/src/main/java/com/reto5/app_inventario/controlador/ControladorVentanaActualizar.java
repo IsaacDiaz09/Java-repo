@@ -33,16 +33,17 @@ public class ControladorVentanaActualizar implements ActionListener {
 		this.ventanaHija = vntActualizar;
 		agregaEventos();
 	}
+
 	/**
 	 * Constructor vacio
 	 */
-	public ControladorVentanaActualizar() {}
-	
+	public ControladorVentanaActualizar() {
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventanaHija.getBtnActualizaProd()) {
 			actualizarProducto();
-			ControladorVentana.listarJTable();
 		}
 	}
 
@@ -58,20 +59,25 @@ public class ControladorVentanaActualizar implements ActionListener {
 		if (verificaCampos()) {
 			try {
 				String nuevoNombre = ventanaHija.getTxtNuevoNombre().getText();
-				float nuevoPrecio = Float.parseFloat(ventanaHija.getTxtNuevoInventario().getText());
-				int nuevoInventario = Integer.valueOf(ventanaHija.getTxtNuevoPrecio().getText());
+				double nuevoPrecio = Double.parseDouble(ventanaHija.getTxtNuevoPrecio().getText());
+				int nuevoInventario = Integer.valueOf(ventanaHija.getTxtNuevoInventario().getText());
 
 				Producto producto = Producto.crearProducto(ControladorVentana.prodSeleccionado, nuevoNombre,
 						nuevoPrecio, nuevoInventario);
 				repo.save(producto);
 				limpiaCamposTxt();
 				ventanaHija.dispose();
+				ControladorVentana.listarJTable();
 
 			} catch (NumberFormatException ex) {
 				JOptionPane.showMessageDialog(ventanaHija, "Ha introducido valores invalidos\nIntente nuevamente",
 						"Advertencia", JOptionPane.WARNING_MESSAGE, null);
 				limpiaCamposTxt();
 			}
+		} else {
+			JOptionPane.showMessageDialog(ventanaHija, "Todos los campos son obligatorios", "Advertencia",
+					JOptionPane.WARNING_MESSAGE, null);
+			limpiaCamposTxt();
 		}
 	}
 

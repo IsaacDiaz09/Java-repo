@@ -54,17 +54,17 @@ public class Gui extends JFrame {
 	 */
 	static final Font FNT_JTXTS = new Font("Century Gothic", Font.PLAIN, 16);
 
-	JTable productos = new JTable();
+	private JTable productos = new JTable();
 	static int seleccionFila;
-	private static VentanaActualizarProd ventanaActualizar = null;
-	public JTextField txtNombre = new JTextField();
-	public JTextField txtInventario = new JTextField();
-	public JTextField txtPrecio = new JTextField();
-	JButton agregaProducto = new JButton("Agregar Producto");
-	JButton btnActualiza = new JButton("Actualizar producto");
-	JButton btnElimina = new JButton("Eliminar");
-	JButton btnInforme = new JButton("Generar informe");
-	final String[] columnas = { "Nombre", "Precio", "Inventario" };
+	private JTextField txtNombre = new JTextField();
+	private JTextField txtInventario = new JTextField();
+	private JTextField txtPrecio = new JTextField();
+	private JButton agregaProducto = new JButton("Agregar Producto");
+	private JButton btnActualiza = new JButton("Actualizar producto");
+	private JButton btnElimina = new JButton("Eliminar");
+	private JButton btnInforme = new JButton("Generar informe");
+
+	private final String[] columnas = { "Nombre", "Precio", "Inventario" };
 	DefaultTableModel model = new DefaultTableModel(null, columnas) {
 		@Override
 		public boolean isCellEditable(int filas, int columnas) {

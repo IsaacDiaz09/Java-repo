@@ -31,11 +31,11 @@ public class VentanaActualizarProd extends JFrame {
 	/**
 	 * Definicion de variables de clase
 	 */
-	public final static JTextField txtNuevoNombre = new JTextField();
-	public final static JTextField txtNuevoInventario = new JTextField();
-	public final static JTextField txtNuevoPrecio = new JTextField();
-	static final JPanel panelActualizar = new JPanel();
-	public JButton actualizaProducto = new JButton("Actualizar Producto");
+	private final static JTextField txtNuevoNombre = new JTextField();
+	private final static JTextField txtNuevoInventario = new JTextField();
+	private final static JTextField txtNuevoPrecio = new JTextField();
+	private static final JPanel panelActualizar = new JPanel();
+	private JButton actualizaProducto = new JButton("Actualizar Producto");
 
 	public JButton getBtnActualizaProd() {
 		return actualizaProducto;
@@ -112,12 +112,6 @@ public class VentanaActualizarProd extends JFrame {
 		actualizaProducto.setFocusable(false);
 		actualizaProducto.setBounds(110, 150, 170, 30);
 
-		// Cuando se hace click en el boton llama al metodo de actualizar producto
-		/*
-		 * actualizaProducto.addActionListener(e -> Reto3.actualizarProducto(
-		 * Gui.seleccionFila, txtNuevoNombre.getText(), txtNuevoPrecio.getText(),
-		 * txtNuevoInventario.getText()) );
-		 */
 		// Se añade al panel
 		panelActualizar.add(actualizaProducto);
 		this.pack();
