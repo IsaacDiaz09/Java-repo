@@ -1,5 +1,5 @@
 /* Reto 4 Isaac Diaz G15 */
-
+use db_reto4;
 /* Consulta 1*/ 
 SELECT nombre,inventario FROM productos WHERE precio >= 9000 ORDER BY nombre;
 /* Consulta 2*/ 

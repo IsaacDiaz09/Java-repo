@@ -5,12 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import org.springframework.stereotype.Service;
+
 import com.reto5.app_inventario.modelo.Producto;
 import com.reto5.app_inventario.modelo.RepositorioProducto;
 import com.reto5.app_inventario.vista.VentanaActualizarProd;
-import com.reto5.app_inventario.vista.Gui;
-
-import org.springframework.stereotype.Service;
 
 /**
  * @author: Isaac Diaz
@@ -23,13 +22,22 @@ public class ControladorVentanaActualizar implements ActionListener {
 
 	private RepositorioProducto repo;
 
+	/**
+	 * Constructor de clase
+	 * 
+	 * @param repositorio
+	 * @param vntActualizar
+	 */
 	public ControladorVentanaActualizar(RepositorioProducto repositorio, VentanaActualizarProd vntActualizar) {
-
 		this.repo = repositorio;
 		this.ventanaHija = vntActualizar;
 		agregaEventos();
 	}
-
+	/**
+	 * Constructor vacio
+	 */
+	public ControladorVentanaActualizar() {}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventanaHija.getBtnActualizaProd()) {
@@ -38,13 +46,13 @@ public class ControladorVentanaActualizar implements ActionListener {
 		}
 	}
 
-	public ControladorVentanaActualizar() {
-	}
-
-	public void agregaEventos() {
+	private void agregaEventos() {
 		ventanaHija.getBtnActualizaProd().addActionListener(this);
 	}
 
+	/**
+	 * actualiza un producto
+	 */
 	private void actualizarProducto() {
 
 		if (verificaCampos()) {
@@ -67,6 +75,9 @@ public class ControladorVentanaActualizar implements ActionListener {
 		}
 	}
 
+	/**
+	 * Limpia los JTextField
+	 */
 	private void limpiaCamposTxt() {
 		ventanaHija.getTxtNuevoNombre().setText("");
 		ventanaHija.getTxtNuevoInventario().setText("");
@@ -74,6 +85,11 @@ public class ControladorVentanaActualizar implements ActionListener {
 		ventanaHija.getTxtNuevoNombre().grabFocus();
 	}
 
+	/**
+	 * verifica si los campos fueron dejados en blanco
+	 * 
+	 * @return retorna un boolean (true o false)
+	 */
 	private boolean verificaCampos() {
 		if (ventanaHija.getTxtNuevoNombre().getText().isBlank()
 				|| ventanaHija.getTxtNuevoInventario().getText().isBlank()

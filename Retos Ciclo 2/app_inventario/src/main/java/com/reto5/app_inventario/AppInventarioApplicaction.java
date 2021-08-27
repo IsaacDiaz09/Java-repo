@@ -1,9 +1,5 @@
 package com.reto5.app_inventario;
 
-import com.reto5.app_inventario.controlador.ControladorVentana;
-import com.reto5.app_inventario.modelo.RepositorioProducto;
-import com.reto5.app_inventario.vista.Gui;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +8,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+
+import com.reto5.app_inventario.controlador.ControladorVentana;
+import com.reto5.app_inventario.modelo.RepositorioProducto;
+import com.reto5.app_inventario.vista.Gui;
 
 
 /**

@@ -2,6 +2,7 @@ package com.reto5.app_inventario.vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -65,7 +66,7 @@ public class VentanaActualizarProd extends JFrame {
 		Border bordeBase = BorderFactory.createLineBorder(new Color(204, 169, 221), 2, true);
 		panelActualizar.setBorder(
 				BorderFactory.createTitledBorder(bordeBase, " Actualizar '" + ControladorVentana.nombreProd + "' ",
-						TitledBorder.LEFT, TitledBorder.TOP, Gui.fuenteBorde));
+						TitledBorder.LEFT, TitledBorder.TOP, Gui.FNT_BORDE));
 
 		this.add(panelActualizar);
 		// Dimensiones del panel
@@ -75,39 +76,39 @@ public class VentanaActualizarProd extends JFrame {
 
 		// Se definen las etiquetas y se añaden
 		JLabel nuevoNombre = new JLabel("Nuevo nombre");
-		nuevoNombre.setFont(Gui.etiquetas);
+		nuevoNombre.setFont(Gui.FNT_ETIQUETAS);
 		nuevoNombre.setBounds(20, 30, 130, 30);
 		panelActualizar.add(nuevoNombre);
 
 		JLabel precio = new JLabel("Nuevo precio");
-		precio.setFont(Gui.etiquetas);
+		precio.setFont(Gui.FNT_ETIQUETAS);
 		precio.setBounds(20, 70, 130, 30);
 		panelActualizar.add(precio);
 
 		JLabel prod = new JLabel("Nuevo inventario");
-		prod.setFont(Gui.etiquetas);
+		prod.setFont(Gui.FNT_ETIQUETAS);
 		prod.setBounds(20, 110, 130, 30);
 		panelActualizar.add(prod);
 
 		// Se definen los campos de texto y se añaden
-		txtNuevoNombre.setFont(Gui.Jtxts);
+		txtNuevoNombre.setFont(Gui.FNT_JTXTS);
 		txtNuevoNombre.setHorizontalAlignment(JTextField.CENTER);
 		txtNuevoNombre.setBounds(200, 30, 150, 30);
 		panelActualizar.add(txtNuevoNombre);
 
-		txtNuevoPrecio.setFont(Gui.Jtxts);
+		txtNuevoPrecio.setFont(Gui.FNT_JTXTS);
 		txtNuevoPrecio.setHorizontalAlignment(JTextField.CENTER);
 		txtNuevoPrecio.setBounds(200, 70, 150, 30);
 		panelActualizar.add(txtNuevoPrecio);
 
-		txtNuevoInventario.setFont(Gui.Jtxts);
+		txtNuevoInventario.setFont(Gui.FNT_JTXTS);
 		txtNuevoInventario.setHorizontalAlignment(JTextField.CENTER);
 		txtNuevoInventario.setBounds(200, 110, 150, 30);
 		panelActualizar.add(txtNuevoInventario);
 
 		// Boton de actualizar producto y sus propiedades
 
-		actualizaProducto.setFont(Gui.botones);
+		actualizaProducto.setFont(Gui.FNT_BOTONES);
 		actualizaProducto.setFocusable(false);
 		actualizaProducto.setBounds(110, 150, 170, 30);
 

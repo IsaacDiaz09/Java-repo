@@ -1,13 +1,12 @@
 package com.reto5.app_inventario.controlador;
 
-import java.text.DecimalFormat;
 import java.util.Optional;
-
-import com.reto5.app_inventario.modelo.Producto;
-import com.reto5.app_inventario.modelo.RepositorioProducto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.reto5.app_inventario.modelo.Producto;
+import com.reto5.app_inventario.modelo.RepositorioProducto;
 
 
 /**
@@ -18,6 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ControladorProducto implements RepositorioProducto {
 
+	/**
+	 * Inyecta la dependencia para poder trabajar con ella
+	 */
 	@Autowired
 	private  RepositorioProducto repositorioProducto;
 

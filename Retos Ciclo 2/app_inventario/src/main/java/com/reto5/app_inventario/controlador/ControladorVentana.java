@@ -6,17 +6,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import org.springframework.stereotype.Service;
 
 import com.reto5.app_inventario.modelo.Producto;
 import com.reto5.app_inventario.modelo.RepositorioProducto;
 import com.reto5.app_inventario.vista.Gui;
 import com.reto5.app_inventario.vista.VentanaActualizarProd;
-
-import org.springframework.stereotype.Service;
 
 /**
  * @author: Isaac Diaz
@@ -24,12 +25,40 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ControladorVentana implements ActionListener, MouseListener {
+	/**
+	 * Inicializacion de la variable que tomara el valor del id seleccionado
+	 */
 	public static int prodSeleccionado = -1;
+	/**
+	 * Para dar formato a los calculos de promedio y valor total
+	 */
 	private final DecimalFormat DF = new DecimalFormat("#.0");
+	/**
+	 * Se define global porque llevara el nombre del producto seleccionado a la
+	 * ventana hija
+	 */
 	public static String nombreProd = "";
+	/**
+	 * Inicializacion de la ventana principal de Swing
+	 */
 	public static Gui ventana;
+	/**
+	 * Inicializacion del repositorio para ejecutar los metodos crud
+	 */
 	private static RepositorioProducto repo;
 
+	/**
+	 * Constructor vacio necesario para poder crear los objetos
+	 */
+	public ControladorVentana() {
+	}
+
+	/**
+	 * Constructor para asignar el repositorio y traer la vista
+	 * 
+	 * @param repositorio
+	 * @param vista
+	 */
 	public ControladorVentana(RepositorioProducto repositorio, Gui vista) {
 		ControladorVentana.repo = repositorio;
 		ControladorVentana.ventana = vista;
@@ -45,6 +74,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 			if (verificaCampos()) {
 				agregaProducto();
 				listarJTable();
+
 			} else {
 				JOptionPane.showMessageDialog(ventana, "Todos los campos son obligatorios", "Advertencia",
 						JOptionPane.WARNING_MESSAGE, null);
@@ -59,7 +89,6 @@ public class ControladorVentana implements ActionListener, MouseListener {
 				ControladorVentanaActualizar controlador = new ControladorVentanaActualizar(repo, ventanaActualizar);
 				ventanaActualizar.setControlador(controlador);
 				ventanaActualizar.setVisible(true);
-
 			}
 
 		}
@@ -79,9 +108,6 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 	}
 
-	public ControladorVentana() {
-	}
-
 	public void agregaEventos() {
 		ventana.getAgregaProd().addActionListener(this);
 		ventana.getActualizaProd().addActionListener(this);
@@ -94,6 +120,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 		ventana.getTxtNombre().setText("");
 		ventana.getTxtPrecio().setText("");
 		ventana.getTxtInventario().setText("");
+		ventana.getTxtNombre().grabFocus();
 	}
 
 	private boolean verificaCampos() {
@@ -137,11 +164,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 	public static void listarJTable() {
 		DefaultTableModel modelo = ventana.getModel();
-		for (int i = ventana.getTable().getRowCount() - 1; i >= 0; i--) {
-			modelo.removeRow(i);
-		}
+		modelo.setRowCount(0);
 		for (Producto p : (List<Producto>) repo.findAll()) {
-
 			Object[] fila = { p.getName(), p.getPrice(), p.getStock() };
 			modelo.addRow(fila);
 		}
@@ -204,6 +228,11 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	public void mouseExited(MouseEvent e) {
 	}
 
+	/**
+	 * Metodo que genera el informe sobre los productos
+	 * 
+	 * @return -> un string
+	 */
 	private String generarInforme() {
 		return "Producto precio mayor: " + mayorYmenor()[0] + "\n" + "Producto precio menor: " + mayorYmenor()[1] + "\n"
 				+ "Promedio de precios:   " + promedio() + "\n" + "Valor del inventario:  " + valTotal();
@@ -234,6 +263,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	/**
 	 * Metodo que haya el promedio entre los precios de los productos actuales en la
 	 * tabla
+	 * 
+	 * @return retorna el promedio de los productos como string
 	 */
 	private String promedio() {
 		double suma = 0;
@@ -247,6 +278,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	/**
 	 * Metodo que haya el valor total de los productos actuales en la tabla
 	 * 
+	 * @return retorna el valor total en un string
 	 */
 	private String valTotal() {
 		double suma = 0;

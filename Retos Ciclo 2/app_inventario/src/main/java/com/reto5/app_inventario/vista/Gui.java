@@ -34,13 +34,25 @@ public class Gui extends JFrame {
 
 	private static final long serialVersionUID = 6129342687811689419L;
 	/**
-	 * Variables y fuentes a usar en la clase
+	 * Fuente para el titulo
 	 */
-	static final Font fuenteTitulo = new Font("Century Gothic", Font.BOLD, 22);
-	static final Font fuenteBorde = new Font("Century Gothic", Font.ITALIC, 18);
-	static final Font etiquetas = new Font("Century Gothic", Font.BOLD, 14);
-	static final Font botones = new Font("Century Gothic", Font.ITALIC, 14);
-	static final Font Jtxts = new Font("Century Gothic", Font.PLAIN, 16);
+	static final Font FNT_TITULO = new Font("Century Gothic", Font.BOLD, 22);
+	/**
+	 * Fuente para los bordes
+	 */
+	static final Font FNT_BORDE = new Font("Century Gothic", Font.ITALIC, 18);
+	/**
+	 * Fuente para las etiquetas
+	 */
+	static final Font FNT_ETIQUETAS = new Font("Century Gothic", Font.BOLD, 14);
+	/**
+	 * Fuente para los botones
+	 */
+	static final Font FNT_BOTONES = new Font("Century Gothic", Font.ITALIC, 14);
+	/**
+	 * Fuente para los campos de texto
+	 */
+	static final Font FNT_JTXTS = new Font("Century Gothic", Font.PLAIN, 16);
 
 	JTable productos = new JTable();
 	static int seleccionFila;
@@ -112,7 +124,7 @@ public class Gui extends JFrame {
 		JPanel panel = new JPanel();
 		Border bordeBase = BorderFactory.createLineBorder(new Color(204, 169, 221), 2, true);
 		panel.setBorder(BorderFactory.createTitledBorder(bordeBase, " Bienvenido a la aplicación de Inventario ",
-				TitledBorder.CENTER, TitledBorder.TOP, fuenteTitulo));
+				TitledBorder.CENTER, TitledBorder.TOP, FNT_TITULO));
 		this.add(panel);
 
 		/**
@@ -122,7 +134,7 @@ public class Gui extends JFrame {
 		// Borde con titulo
 		JPanel panelAgregar = new JPanel();
 		panelAgregar.setBorder(BorderFactory.createTitledBorder(bordeBase, " Agregar nuevo producto ",
-				TitledBorder.LEFT, TitledBorder.TOP, fuenteBorde));
+				TitledBorder.LEFT, TitledBorder.TOP, FNT_BORDE));
 		// Se añade al panel principal
 		panel.add(panelAgregar);
 		panelAgregar.setPreferredSize(new Dimension(350, 190));
@@ -131,38 +143,38 @@ public class Gui extends JFrame {
 
 		// Se declaran las etiquetas
 		JLabel nombre = new JLabel("Nombre");
-		nombre.setFont(etiquetas);
+		nombre.setFont(FNT_ETIQUETAS);
 		nombre.setBounds(30, 30, 80, 30);
 		panelAgregar.add(nombre);
 
 		JLabel precio = new JLabel("Precio");
-		precio.setFont(etiquetas);
+		precio.setFont(FNT_ETIQUETAS);
 		precio.setBounds(30, 70, 80, 30);
 		panelAgregar.add(precio);
 
 		JLabel prod = new JLabel("Inventario");
-		prod.setFont(etiquetas);
+		prod.setFont(FNT_ETIQUETAS);
 		prod.setBounds(30, 110, 80, 30);
 		panelAgregar.add(prod);
 
 		// Se definen los campos de texto
-		txtNombre.setFont(Jtxts);
+		txtNombre.setFont(FNT_JTXTS);
 		txtNombre.setHorizontalAlignment(JTextField.CENTER);
 		txtNombre.setBounds(160, 30, 150, 30);
 		panelAgregar.add(txtNombre);
 
-		txtPrecio.setFont(Jtxts);
+		txtPrecio.setFont(FNT_JTXTS);
 		txtPrecio.setHorizontalAlignment(JTextField.CENTER);
 		txtPrecio.setBounds(160, 70, 150, 30);
 		panelAgregar.add(txtPrecio);
 
-		txtInventario.setFont(Jtxts);
+		txtInventario.setFont(FNT_JTXTS);
 		txtInventario.setHorizontalAlignment(JTextField.CENTER);
 		txtInventario.setBounds(160, 110, 150, 30);
 		panelAgregar.add(txtInventario);
 
 		// Se declara el boton que agregara el producto
-		agregaProducto.setFont(botones);
+		agregaProducto.setFont(FNT_BOTONES);
 		agregaProducto.setFocusable(false);
 		agregaProducto.setBounds(100, 150, 170, 30);
 		panelAgregar.add(agregaProducto);
@@ -204,14 +216,14 @@ public class Gui extends JFrame {
 		// Se definen y se añaden los 3 botones a su JPanel padre
 
 		opciones.add(btnElimina);
-		btnElimina.setFont(botones);
+		btnElimina.setFont(FNT_BOTONES);
 		btnElimina.setFocusable(false);
 
 		opciones.add(btnActualiza);
-		btnActualiza.setFont(botones);
+		btnActualiza.setFont(FNT_BOTONES);
 		btnActualiza.setFocusable(false);
 
-		btnInforme.setFont(botones);
+		btnInforme.setFont(FNT_BOTONES);
 		opciones.add(btnInforme);
 		btnInforme.setFocusable(false);
 		this.setVisible(true);
