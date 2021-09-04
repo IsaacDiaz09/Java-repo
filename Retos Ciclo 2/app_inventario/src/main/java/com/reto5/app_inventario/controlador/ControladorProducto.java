@@ -3,7 +3,6 @@ package com.reto5.app_inventario.controlador;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.reto5.app_inventario.modelo.Producto;
 import com.reto5.app_inventario.modelo.RepositorioProducto;
@@ -14,7 +13,6 @@ import com.reto5.app_inventario.modelo.RepositorioProducto;
  * Se implementan los metodos anteriormente existentes de la clase CrudRepository
  */
 
-@Service
 public class ControladorProducto implements RepositorioProducto {
 
 	/**

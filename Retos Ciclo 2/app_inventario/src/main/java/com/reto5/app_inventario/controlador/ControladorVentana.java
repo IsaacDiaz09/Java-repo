@@ -25,6 +25,7 @@ import com.reto5.app_inventario.vista.VentanaActualizarProd;
 
 @Service
 public class ControladorVentana implements ActionListener, MouseListener {
+	
 	/**
 	 * Inicializacion de la variable que tomara el valor del id seleccionado
 	 */
@@ -33,11 +34,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * Para dar formato a los calculos de promedio y valor total
 	 */
 	private final DecimalFormat DF = new DecimalFormat("#.0");
-	/**
-	 * Se define global porque llevara el nombre del producto seleccionado a la
-	 * ventana hija
-	 */
-	public static String nombreProd = "";
+
+	private static String nombreProd = "";
 	/**
 	 * Inicializacion de la ventana principal de Swing
 	 */
@@ -46,13 +44,17 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * Inicializacion del repositorio para ejecutar los metodos crud
 	 */
 	private static RepositorioProducto repo;
+	/**
+	 * Retorna el nombre del producto seleccionado para ser usado en la capa de vista
+	 */
 
 	/**
 	 * Constructor vacio necesario para poder crear los objetos
 	 */
 	public ControladorVentana() {
 	}
-
+	VentanaActualizarProd ventanaActualizar;
+	ControladorVentanaActualizar controlador;
 	/**
 	 * Constructor para asignar el repositorio y traer la vista
 	 * 
@@ -66,6 +68,9 @@ public class ControladorVentana implements ActionListener, MouseListener {
 		productosIniciales();
 		listarJTable();
 		agregaEventos();
+		this.ventanaActualizar = new VentanaActualizarProd();
+		this.controlador = new ControladorVentanaActualizar(repo, ventanaActualizar);
+		this.ventanaActualizar.setControlador(controlador);
 	}
 
 	@Override
@@ -85,9 +90,6 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 		if (e.getSource() == ventana.getActualizaProd()) {
 			if (verificaSeleccion()) {
-				VentanaActualizarProd ventanaActualizar = new VentanaActualizarProd();
-				ControladorVentanaActualizar controlador = new ControladorVentanaActualizar(repo, ventanaActualizar);
-				ventanaActualizar.setControlador(controlador);
 				ventanaActualizar.setVisible(true);
 			}
 
@@ -176,7 +178,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return id -> int
 	 */
-	private void prodSeleccionado() {
+	public void prodSeleccionado() {
 		int fila = ventana.getTable().getSelectedRow();
 		nombreProd = ventana.getTable().getValueAt(fila, 0).toString();
 

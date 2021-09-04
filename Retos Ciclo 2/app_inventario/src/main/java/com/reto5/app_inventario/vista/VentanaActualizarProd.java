@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import com.reto5.app_inventario.controlador.ControladorVentana;
 import com.reto5.app_inventario.controlador.ControladorVentanaActualizar;
 
 /**
@@ -65,7 +64,7 @@ public class VentanaActualizarProd extends JFrame {
 		// Borde
 		Border bordeBase = BorderFactory.createLineBorder(new Color(204, 169, 221), 2, true);
 		panelActualizar.setBorder(
-				BorderFactory.createTitledBorder(bordeBase, " Actualizar '" + ControladorVentana.nombreProd + "' ",
+				BorderFactory.createTitledBorder(bordeBase, " · Actualizar · ",
 						TitledBorder.LEFT, TitledBorder.TOP, Gui.FNT_BORDE));
 
 		this.add(panelActualizar);
@@ -117,7 +116,6 @@ public class VentanaActualizarProd extends JFrame {
 		this.pack();
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
-
 	}
 
 	/**

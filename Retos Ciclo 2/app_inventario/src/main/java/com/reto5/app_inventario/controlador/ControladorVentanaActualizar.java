@@ -31,7 +31,7 @@ public class ControladorVentanaActualizar implements ActionListener {
 	public ControladorVentanaActualizar(RepositorioProducto repositorio, VentanaActualizarProd vntActualizar) {
 		this.repo = repositorio;
 		this.ventanaHija = vntActualizar;
-		agregaEventos();
+		ventanaHija.getBtnActualizaProd().addActionListener(this);
 	}
 
 	/**
@@ -44,12 +44,11 @@ public class ControladorVentanaActualizar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventanaHija.getBtnActualizaProd()) {
 			actualizarProducto();
+			
 		}
 	}
 
-	private void agregaEventos() {
-		ventanaHija.getBtnActualizaProd().addActionListener(this);
-	}
+
 
 	/**
 	 * actualiza un producto
@@ -65,15 +64,17 @@ public class ControladorVentanaActualizar implements ActionListener {
 				Producto producto = Producto.crearProducto(ControladorVentana.prodSeleccionado, nuevoNombre,
 						nuevoPrecio, nuevoInventario);
 				repo.save(producto);
+				ventanaHija.setVisible(false);
 				limpiaCamposTxt();
-				ventanaHija.dispose();
 				ControladorVentana.listarJTable();
 
 			} catch (NumberFormatException ex) {
 				JOptionPane.showMessageDialog(ventanaHija, "Ha introducido valores invalidos\nIntente nuevamente",
 						"Advertencia", JOptionPane.WARNING_MESSAGE, null);
 				limpiaCamposTxt();
-			}
+
+			} 
+
 		} else {
 			JOptionPane.showMessageDialog(ventanaHija, "Todos los campos son obligatorios", "Advertencia",
 					JOptionPane.WARNING_MESSAGE, null);

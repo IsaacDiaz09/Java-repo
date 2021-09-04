@@ -1,7 +1,5 @@
 package com.app.proyecto_spring.vista;
 
-import com.app.proyecto_spring.controlador.ControladorProducto;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,12 +22,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
-/* 
-import clases.BaseDatosProductos;
-import clases.Producto;
-import clases.Reto3;
- */
 
 /**
  * @author Isaac
