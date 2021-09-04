@@ -36,7 +36,7 @@ public class BaseDatosProductos {
 
 		return "Producto precio mayor: " + Reto3.mayor() + "\n" 
 		+ "Producto precio menor: " + Reto3.menor() + "\n"
-		+ "Promedio de precios:   " + Reto3.promedio() + "\n" 
+		+ "Promedio de precios:   " + Reto3.promedio() + "\n"
 		+ "Valor del inventario:  " + Reto3.valTotal();
 	}
 
