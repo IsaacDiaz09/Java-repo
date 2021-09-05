@@ -13,7 +13,7 @@ import interfaz.VentanaActualizarProd;
  * Reto 3 Ciclo de Java (2) misionTic2022
  */
 public class Reto3 {
-
+	
 	/**
 	 * Separe los datos de los productos en listas para trabajarlos a manera mas
 	 * grafica, los cuales se van actualizando despues de que se realiza alguna
@@ -126,24 +126,36 @@ public class Reto3 {
 			int id = Collections.max(Globals.ids) + 1;
 			double valor = Double.parseDouble(val);
 			int stock = Integer.parseInt(inv);
-			BaseDatosProductos.listaProductos.put(id, new Producto(id, prd, valor, stock));
-			// Despues de agregar el Producto al HashMap se actualiza el JTable
-			Gui.vaciarJTable();
-			BaseDatosProductos.cargarDatos();
-			Gui.cargarJTable();
-			// Se limpian los campos despues que agregar fue exitoso
-			Gui.txtNombre.setText("");
-			Gui.txtInventario.setText("");
-			Gui.txtPrecio.setText("");
+			// Si ya existe un producto que se llame igual no lo agrega
+			if (!(Globals.nombres.contains(prd))) {
+				BaseDatosProductos.listaProductos.put(id, new Producto(id, prd, valor, stock));
+				// Despues de agregar el Producto al HashMap se actualiza el JTable
+				Gui.vaciarJTable();
+				BaseDatosProductos.cargarDatos();
+				Gui.cargarJTable();
+				// Se limpian los campos despues que agregar fue exitoso
+				limpiaCampos();
+			} else {
+				JOptionPane.showMessageDialog(null, "El producto '"+prd+"' ya existe", "Error",
+				JOptionPane.ERROR_MESSAGE, null);
+				limpiaCampos();
+			}
+
 		} else {
 			// Se limpian los campos si la verificacion arrojo false
-			Gui.txtNombre.setText("");
-			Gui.txtInventario.setText("");
-			Gui.txtPrecio.setText("");
+			limpiaCampos();
 		}
 
 	}
-
+	/**
+	 * Vacia los campos de texto
+	 */
+	private static void limpiaCampos() {
+		Gui.txtNombre.setText("");
+		Gui.txtInventario.setText("");
+		Gui.txtPrecio.setText("");
+		Gui.txtNombre.grabFocus();
+	}
 	/**
 	 * metodo que actualiza un producto
 	 *

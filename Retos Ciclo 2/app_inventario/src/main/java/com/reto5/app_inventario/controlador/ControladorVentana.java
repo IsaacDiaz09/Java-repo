@@ -25,7 +25,7 @@ import com.reto5.app_inventario.vista.VentanaActualizarProd;
 
 @Service
 public class ControladorVentana implements ActionListener, MouseListener {
-	
+
 	/**
 	 * Inicializacion de la variable que tomara el valor del id seleccionado
 	 */
@@ -44,8 +44,10 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * Inicializacion del repositorio para ejecutar los metodos crud
 	 */
 	private static RepositorioProducto repo;
+
 	/**
-	 * Retorna el nombre del producto seleccionado para ser usado en la capa de vista
+	 * Retorna el nombre del producto seleccionado para ser usado en la capa de
+	 * vista
 	 */
 
 	/**
@@ -53,8 +55,10 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 */
 	public ControladorVentana() {
 	}
+
 	VentanaActualizarProd ventanaActualizar;
 	ControladorVentanaActualizar controlador;
+
 	/**
 	 * Constructor para asignar el repositorio y traer la vista
 	 * 
@@ -152,14 +156,21 @@ public class ControladorVentana implements ActionListener, MouseListener {
 			String nombreProd = ventana.getTxtNombre().getText();
 			float precioProd = Float.parseFloat(ventana.getTxtPrecio().getText());
 			int inventarioProd = Integer.valueOf(ventana.getTxtInventario().getText());
+			if (!(verficaExistencia(nombreProd))) {
 
-			Producto producto = Producto.crearProducto(nombreProd, precioProd, inventarioProd);
-			repo.save(producto);
-			limpiaCamposTxt();
+				Producto producto = Producto.crearProducto(nombreProd, precioProd, inventarioProd);
+				repo.save(producto);
+
+			} else {
+				JOptionPane.showMessageDialog(null, "El producto '" + nombreProd + "' ya existe", "Error",
+						JOptionPane.ERROR_MESSAGE, null);
+			}
 
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(ventana, "Ha introducido valores invalidos\nIntente nuevamente",
+			JOptionPane.showMessageDialog(ventana, "Ha introducido valores invalidos\n\tIntente nuevamente",
 					"Advertencia", JOptionPane.WARNING_MESSAGE, null);
+
+		} finally {
 			limpiaCamposTxt();
 		}
 	}
@@ -190,6 +201,22 @@ public class ControladorVentana implements ActionListener, MouseListener {
 			nombres.add(p.getName());
 		}
 		prodSeleccionado = ids.get(nombres.indexOf(nombreProd));
+	}
+
+	/**
+	 * Si encuentra un producto que se llame igual impedirá que se agrege
+	 * Nota: tambien se puede lograr modificando la estructura de la tabla 
+	 * (me refieron a una llave primaria compuesta)
+	 * @param nombre del producto a verificar
+	 * @return -> booleano
+	 */
+	private boolean verficaExistencia(String prod) {
+		for (Producto p : (List<Producto>) repo.findAll()) {
+			if (p.getName().equals(prod)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

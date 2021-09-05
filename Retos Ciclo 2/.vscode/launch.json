@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AppInventarioApplicaction",
+            "request": "launch",
+            "mainClass": "com.reto5.app_inventario.AppInventarioApplicaction",
+            "projectName": "app_inventario"
+        },
+        {
+            "type": "java",
+            "name": "Launch Reto3",
+            "request": "launch",
+            "mainClass": "clases.Reto3",
+            "projectName": "Reto3Interfaz"
+        },
+        {
+            "type": "java",
             "name": "Launch Reto2",
             "request": "launch",
             "mainClass": "Reto2",
