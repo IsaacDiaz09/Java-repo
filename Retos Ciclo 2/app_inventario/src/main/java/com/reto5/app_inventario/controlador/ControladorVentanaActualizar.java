@@ -44,11 +44,8 @@ public class ControladorVentanaActualizar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventanaHija.getBtnActualizaProd()) {
 			actualizarProducto();
-			
 		}
 	}
-
-
 
 	/**
 	 * actualiza un producto
@@ -73,7 +70,7 @@ public class ControladorVentanaActualizar implements ActionListener {
 						"Advertencia", JOptionPane.WARNING_MESSAGE, null);
 				limpiaCamposTxt();
 
-			} 
+			}
 
 		} else {
 			JOptionPane.showMessageDialog(ventanaHija, "Todos los campos son obligatorios", "Advertencia",

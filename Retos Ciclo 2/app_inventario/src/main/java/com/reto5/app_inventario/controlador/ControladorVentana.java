@@ -24,7 +24,8 @@ import com.reto5.app_inventario.vista.VentanaActualizarProd;
  */
 
 @Service
-public class ControladorVentana implements ActionListener, MouseListener {
+public class ControladorVentana implements ActionListener, MouseListener 
+{
 
 	/**
 	 * Inicializacion de la variable que tomara el valor del id seleccionado
@@ -53,8 +54,7 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	/**
 	 * Constructor vacio necesario para poder crear los objetos
 	 */
-	public ControladorVentana() {
-	}
+	public ControladorVentana() {}
 
 	VentanaActualizarProd ventanaActualizar;
 	ControladorVentanaActualizar controlador;
@@ -65,7 +65,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * @param repositorio
 	 * @param vista
 	 */
-	public ControladorVentana(RepositorioProducto repositorio, Gui vista) {
+	public ControladorVentana(RepositorioProducto repositorio, Gui vista) 
+	{
 		ControladorVentana.repo = repositorio;
 		ControladorVentana.ventana = vista;
 		repo.deleteAll();
@@ -78,7 +79,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		if (e.getSource() == ventana.getAgregaProd()) {
 			if (verificaCampos()) {
 				agregaProducto();
@@ -92,14 +94,16 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 		}
 
-		if (e.getSource() == ventana.getActualizaProd()) {
+		if (e.getSource() == ventana.getActualizaProd()) 
+		{
 			if (verificaSeleccion()) {
 				ventanaActualizar.setVisible(true);
 			}
 
 		}
 
-		if (e.getSource() == ventana.getEliminaProd()) {
+		if (e.getSource() == ventana.getEliminaProd()) 
+		{
 			if (verificaSeleccion()) {
 				repo.deleteById(prodSeleccionado);
 				listarJTable();
@@ -108,13 +112,15 @@ public class ControladorVentana implements ActionListener, MouseListener {
 			}
 
 		}
-		if (e.getSource() == ventana.getInformeBtn()) {
+		if (e.getSource() == ventana.getInformeBtn()) 
+		{
 			JOptionPane.showMessageDialog(ventana, generarInforme(), "Informe", JOptionPane.INFORMATION_MESSAGE, null);
 		}
 
 	}
 
-	private void agregaEventos() {
+	private void agregaEventos() 
+	{
 		ventana.getAgregaProd().addActionListener(this);
 		ventana.getActualizaProd().addActionListener(this);
 		ventana.getEliminaProd().addActionListener(this);
@@ -122,14 +128,16 @@ public class ControladorVentana implements ActionListener, MouseListener {
 		ventana.getTable().addMouseListener(this);
 	}
 
-	private void limpiaCamposTxt() {
+	private void limpiaCamposTxt() 
+	{
 		ventana.getTxtNombre().setText("");
 		ventana.getTxtPrecio().setText("");
 		ventana.getTxtInventario().setText("");
 		ventana.getTxtNombre().grabFocus();
 	}
 
-	private boolean verificaCampos() {
+	private boolean verificaCampos() 
+	{
 		if (ventana.getTxtNombre().getText().isBlank() || ventana.getTxtPrecio().getText().isBlank()
 				|| ventana.getTxtInventario().getText().isBlank()) {
 			return false;
@@ -138,7 +146,8 @@ public class ControladorVentana implements ActionListener, MouseListener {
 
 	}
 
-	private void productosIniciales() {
+	private void productosIniciales()
+	{
 		repo.save(Producto.crearProducto("Manzanas", 6000.0, 97));
 		repo.save(Producto.crearProducto("Limones", 2600.0, 45));
 		repo.save(Producto.crearProducto("Peras", 2700.0, 55));
@@ -151,31 +160,37 @@ public class ControladorVentana implements ActionListener, MouseListener {
 		repo.save(Producto.crearProducto("Jamon", 18000.0, 55));
 	}
 
-	private void agregaProducto() {
+	private void agregaProducto() 
+	{
 		try {
 			String nombreProd = ventana.getTxtNombre().getText();
 			float precioProd = Float.parseFloat(ventana.getTxtPrecio().getText());
 			int inventarioProd = Integer.valueOf(ventana.getTxtInventario().getText());
-			if (!(verficaExistencia(nombreProd))) {
+			if (!(verficaExistencia(nombreProd))) 
+			{
 
 				Producto producto = Producto.crearProducto(nombreProd, precioProd, inventarioProd);
 				repo.save(producto);
 
-			} else {
+			} else 
+			{
 				JOptionPane.showMessageDialog(null, "El producto '" + nombreProd + "' ya existe", "Error",
 						JOptionPane.ERROR_MESSAGE, null);
 			}
 
-		} catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) 
+		{
 			JOptionPane.showMessageDialog(ventana, "Ha introducido valores invalidos\n\tIntente nuevamente",
 					"Advertencia", JOptionPane.WARNING_MESSAGE, null);
 
-		} finally {
+		} finally 
+		{
 			limpiaCamposTxt();
 		}
 	}
 
-	public static void listarJTable() {
+	public static void listarJTable() 
+	{
 		DefaultTableModel modelo = ventana.getModel();
 		modelo.setRowCount(0);
 		for (Producto p : (List<Producto>) repo.findAll()) {
@@ -189,14 +204,16 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return id -> int
 	 */
-	public void prodSeleccionado() {
+	public void prodSeleccionado() 
+	{
 		int fila = ventana.getTable().getSelectedRow();
 		nombreProd = ventana.getTable().getValueAt(fila, 0).toString();
 
 		List<Integer> ids = new ArrayList<Integer>();
 		List<String> nombres = new ArrayList<String>();
 
-		for (Producto p : (List<Producto>) repo.findAll()) {
+		for (Producto p : (List<Producto>) repo.findAll()) 
+		{
 			ids.add(p.getId());
 			nombres.add(p.getName());
 		}
@@ -206,13 +223,16 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	/**
 	 * Si encuentra un producto que se llame igual impedirá que se agrege
 	 * Nota: tambien se puede lograr modificando la estructura de la tabla 
-	 * (me refieron a una llave primaria compuesta)
+	 * (me refiero a una llave primaria compuesta)
 	 * @param nombre del producto a verificar
 	 * @return -> booleano
 	 */
-	private boolean verficaExistencia(String prod) {
-		for (Producto p : (List<Producto>) repo.findAll()) {
-			if (p.getName().equals(prod)) {
+	private boolean verficaExistencia(String prod) 
+	{
+		for (Producto p : (List<Producto>) repo.findAll()) 
+		{
+			if (p.getName().equals(prod)) 
+			{
 				return true;
 			}
 		}
@@ -225,9 +245,11 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return -> boolean
 	 */
-	private boolean verificaSeleccion() {
+	private boolean verificaSeleccion() 
+	{
 
-		if (ventana.getTable().getSelectedRow() == -1) {
+		if (ventana.getTable().getSelectedRow() == -1) 
+		{
 			JOptionPane.showMessageDialog(null, "Primero debe seleccionar un producto", "Error",
 					JOptionPane.ERROR_MESSAGE, null);
 			return false;
@@ -262,7 +284,9 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return -> un string
 	 */
-	private String generarInforme() {
+	private String generarInforme() 
+	
+	{
 		return "Producto precio mayor: " + mayorYmenor()[0] + "\n" + "Producto precio menor: " + mayorYmenor()[1] + "\n"
 				+ "Promedio de precios:   " + promedio() + "\n" + "Valor del inventario:  " + valTotal();
 	}
@@ -272,15 +296,19 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return retorna un array
 	 */
-	private String[] mayorYmenor() {
+	private String[] mayorYmenor() 
+	{
 		List<Double> preciosProd = new ArrayList<Double>();
 		List<String> nombresProd = new ArrayList<String>();
 		String[] arr = new String[2];
+
 		// Se rellenan las listas
-		for (Producto p : (List<Producto>) repo.findAll()) {
+		for (Producto p : (List<Producto>) repo.findAll()) 
+		{
 			preciosProd.add(p.getPrice());
 			nombresProd.add(p.getName());
 		}
+
 		// mayor
 		arr[0] = nombresProd.get(preciosProd.indexOf(Collections.max(preciosProd)));
 		// menor
@@ -295,9 +323,11 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return retorna el promedio de los productos como string
 	 */
-	private String promedio() {
+	private String promedio() 
+	{
 		double suma = 0;
-		for (Producto p : repo.findAll()) {
+		for (Producto p : repo.findAll()) 
+		{
 			suma += p.getPrice();
 		}
 
@@ -309,9 +339,11 @@ public class ControladorVentana implements ActionListener, MouseListener {
 	 * 
 	 * @return retorna el valor total en un string
 	 */
-	private String valTotal() {
+	private String valTotal() 
+	{
 		double suma = 0;
-		for (Producto p : repo.findAll()) {
+		for (Producto p : repo.findAll()) 
+		{
 			suma += p.getPrice() * p.getStock();
 		}
 

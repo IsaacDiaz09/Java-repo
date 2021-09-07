@@ -2,15 +2,14 @@ package com.reto5.app_inventario.controlador;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.reto5.app_inventario.modelo.Producto;
 import com.reto5.app_inventario.modelo.RepositorioProducto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author: Isaac Diaz
- * Se implementan los metodos anteriormente existentes de la clase CrudRepository
+ * @author: Isaac Diaz Se implementan los metodos anteriormente existentes de la
+ *          clase CrudRepository
  */
 
 public class ControladorProducto implements RepositorioProducto {
@@ -19,7 +18,7 @@ public class ControladorProducto implements RepositorioProducto {
 	 * Inyecta la dependencia para poder trabajar con ella
 	 */
 	@Autowired
-	private  RepositorioProducto repositorioProducto;
+	private RepositorioProducto repositorioProducto;
 
 	public ControladorProducto(RepositorioProducto repo) {
 		this.repositorioProducto = repo;
@@ -96,6 +95,4 @@ public class ControladorProducto implements RepositorioProducto {
 		return repositorioProducto.save(entity);
 	}
 
-	
-	
 }

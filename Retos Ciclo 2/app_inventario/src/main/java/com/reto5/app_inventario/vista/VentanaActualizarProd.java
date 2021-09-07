@@ -63,9 +63,8 @@ public class VentanaActualizarProd extends JFrame {
 		this.setIconImage(ico.getImage());
 		// Borde
 		Border bordeBase = BorderFactory.createLineBorder(new Color(204, 169, 221), 2, true);
-		panelActualizar.setBorder(
-				BorderFactory.createTitledBorder(bordeBase, " · Actualizar · ",
-						TitledBorder.LEFT, TitledBorder.TOP, Gui.FNT_BORDE));
+		panelActualizar.setBorder(BorderFactory.createTitledBorder(bordeBase, " · Actualizar · ", TitledBorder.LEFT,
+				TitledBorder.TOP, Gui.FNT_BORDE));
 
 		this.add(panelActualizar);
 		// Dimensiones del panel
@@ -106,7 +105,6 @@ public class VentanaActualizarProd extends JFrame {
 		panelActualizar.add(txtNuevoInventario);
 
 		// Boton de actualizar producto y sus propiedades
-
 		actualizaProducto.setFont(Gui.FNT_BOTONES);
 		actualizaProducto.setFocusable(false);
 		actualizaProducto.setBounds(110, 150, 170, 30);
